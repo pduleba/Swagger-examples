@@ -1,12 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>io.swagger</groupId>
-		<artifactId>swagger-samples-project</artifactId>
-		<version>1.0.0</version>
-		<relativePath>../..</relativePath>
-	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.swagger</groupId>
 	<artifactId>swagger-java-cxf-sample</artifactId>
@@ -144,22 +138,27 @@
 			<version>${swagger-version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+		    <groupId>io.swagger</groupId>
+		    <artifactId>swagger-core</artifactId>
+			<version>${swagger-version}</version>
+		</dependency>
 
 		<!-- Logging -->
+		<!-- remove the real commons-logging from classpath -->
+		<!-- declare as provided or exclude from spring jars -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
+			<artifactId>commons-logging</artifactId>
+			<groupId>commons-logging</groupId>
+			<version>1.0</version>
+			<scope>provided</scope>
 		</dependency>
-	    <dependency>
-	        <groupId>org.slf4j</groupId>
-	        <artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-	    </dependency>
-    	<dependency>
+		<!-- add log4j binding to classpath routes slf4j calls to log4j -->
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Runtime dependencies provided by Tomcat -->
@@ -172,9 +171,11 @@
 	</dependencies>
 
 	<properties>
-		<slf4j.version>1.7.13</slf4j.version>
 		<java-version>1.7</java-version>
+		<slf4j.version>1.7.13</slf4j.version>
 		<springframework-version>3.2.1.RELEASE</springframework-version>
 		<cxf-version>2.7.15</cxf-version>
+		<swagger-version>1.5.9</swagger-version>
+		<servlet-api-version>2.5</servlet-api-version>
 	</properties>
 </project>
