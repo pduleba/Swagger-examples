@@ -16,10 +16,14 @@
 
 package io.swagger.sample.exception;
 
-public class BadRequestException extends ApiException{
-  private int code;
-  public BadRequestException (int code, String msg) {
-    super(code, msg);
-    this.code = code;
-  }
+public class BadRequestException extends ApiException {
+	
+	private static final long serialVersionUID = -7869818551483538134L;
+	@SuppressWarnings("unused")
+	private int code;
+
+	public BadRequestException(int code, String msg) {
+		super(code, msg);
+		this.code = code;
+	}
 }
